@@ -1,0 +1,12 @@
+{
+  "extends": [
+    "plugin:react/recommended",
+    "prettier",
+    "prettier/react",
+    "plugin:flowtype/recommended"
+  ],
+  "plugins": ["prettier", "flowtype"],
+  "rules": {
+    "prettier/prettier": "error"
+  }
+}
