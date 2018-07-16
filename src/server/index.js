@@ -5,7 +5,7 @@ import chalk from 'chalk'
 import manifestHelpers from 'express-manifest-helpers'
 import bodyParser from 'body-parser'
 import { configureStore } from '../common/store'
-import serverRender from './renderer'
+import renderOnServer from './renderOnServer'
 import paths from '../../webpack/paths'
 
 require('dotenv').config()
@@ -43,7 +43,7 @@ app.use(
   })
 )
 
-app.use(serverRender())
+app.use(renderOnServer())
 
 // eslint-disable-next-line no-unused-vars
 app.use((err, req, res, next) => {

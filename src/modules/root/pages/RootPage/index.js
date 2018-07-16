@@ -4,12 +4,24 @@ import React, { PureComponent } from 'react'
 import { Route, Link, Switch } from 'react-router-dom'
 import Helmet from 'react-helmet'
 import { connect } from 'react-redux'
+import styled from 'styled-components'
 
 import RootActions from '../../actions'
 
 import Home from '../../components/Home'
 import About from '../../components/About'
 import style from './style.css'
+
+const AppContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  font-size: 40px;
+  background: linear-gradient(20deg, rgb(219, 112, 147), #daa357);
+`
 
 class RootPage extends PureComponent {
   setLanguage = ({ target: { value } }) => {
@@ -18,7 +30,7 @@ class RootPage extends PureComponent {
 
   render() {
     return (
-      <div>
+      <AppContainer>
         <Helmet
           defaultTitle="React SSR Prae"
           titleTemplate="%s – React SSR Prae"
@@ -37,7 +49,7 @@ class RootPage extends PureComponent {
         <button value="en-US" onClick={this.setLanguage}>
           English
         </button>
-      </div>
+      </AppContainer>
     )
   }
 }
