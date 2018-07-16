@@ -6,6 +6,8 @@ import { ServerStyleSheet } from 'styled-components'
 import Helmet from 'react-helmet'
 
 import RootPage from '../modules/root/pages/RootPage'
+import I18nProvider from '../common/i18n'
+
 import renderHtml from './renderHtml'
 
 const renderOnServer = () => (req, res) => {
@@ -16,7 +18,9 @@ const renderOnServer = () => (req, res) => {
       sheet.collectStyles(
         <Provider store={req.store}>
           <Router location={req.url} context={{}}>
-            <RootPage />
+            <I18nProvider>
+              <RootPage />
+            </I18nProvider>
           </Router>
         </Provider>
       )

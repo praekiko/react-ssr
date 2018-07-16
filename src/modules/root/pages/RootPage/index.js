@@ -5,6 +5,7 @@ import { Route, Link, Switch } from 'react-router-dom'
 import Helmet from 'react-helmet'
 import { connect } from 'react-redux'
 import styled from 'styled-components'
+import { translate } from 'react-i18next'
 
 import RootActions from '../../actions'
 
@@ -29,6 +30,8 @@ class RootPage extends PureComponent {
   }
 
   render() {
+    const { t } = this.props
+
     return (
       <AppContainer>
         <Helmet
@@ -43,11 +46,11 @@ class RootPage extends PureComponent {
           <Route path="/about" component={About} />
           <Route render={() => <h1>Nomatch</h1>} />
         </Switch>
-        <button value="th-TH" onClick={this.setLanguage}>
-          Thai
+        <button value="th" onClick={this.setLanguage}>
+          {t('th-button')}
         </button>
-        <button value="en-US" onClick={this.setLanguage}>
-          English
+        <button value="en" onClick={this.setLanguage}>
+          {t('en-button')}
         </button>
       </AppContainer>
     )
@@ -61,4 +64,4 @@ const mapDispatchToProps = {
 export default connect(
   null,
   mapDispatchToProps
-)(RootPage)
+)(translate()(RootPage))

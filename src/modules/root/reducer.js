@@ -1,7 +1,7 @@
 import constanst from './constanst'
 
 export const initialState = {
-  locale: 'th-TH',
+  locale: 'th',
 }
 
 export default (state = initialState, action) => {

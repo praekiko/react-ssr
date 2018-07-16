@@ -16,13 +16,14 @@
 
 * Libs and Dependencies
 
-  - ⚛ React 16.3
+  - ⚛ React 16.4
   - ✔️ Redux + Thunk middleware
   - ✔️ React Router 4
   - ✔️ React Helmet
 
-* Must be cool id has
+* Must be cool if has
   - ⚪ React i18next for multi language support
+  - ⚪ Code Spliting
   - ⚪ Jest 22
   - ⚪ Precommit hooks via lint-staged + Husky
   - ⚪ Support for Storybook (>= 4.0.0)

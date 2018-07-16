@@ -5,6 +5,7 @@ import { BrowserRouter as Router } from 'react-router-dom'
 import { Provider } from 'react-redux'
 
 import RootPage from '../modules/root/pages/RootPage'
+import I18nProvider from '../common/i18n'
 import { configureStore } from '../common/store'
 
 const store =
@@ -16,10 +17,11 @@ const store =
 hydrate(
   <Provider store={store}>
     <Router>
-      <RootPage />
+      <I18nProvider>
+        <RootPage />
+      </I18nProvider>
     </Router>
   </Provider>,
-  // eslint-disable-next-line no-undef
   document.getElementById('app')
 )
 
