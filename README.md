@@ -9,25 +9,23 @@
   - 🎉 Flow Type
   - 🎉 Prettier
   - 💅 styled-components
-  - ✅ Server side prerendering with Express
-  - ✅ Hot Module Reloading (HMR)
-  - ✅ Jest 22
-  - ✅ CSS Modules
-  - ✅ PostCSS
-  - ✅ Precommit hooks via lint-staged + Husky
-  - ✅ Optional static deployment without the need for Node.js on the server
-  - ⚪ Support for [Storybook](https://storybook.js.org/) (>= 4.0.0)
+  - ✔️ Server side prerendering with Express
+  - ✔️ Hot Module Reloading (HMR)
+  - ✔️ CSS Modules
+  - ✔️ PostCSS
 
 * Libs and Dependencies
+
   - ⚛ React 16.3
   - ✔️ Redux + Thunk middleware
-  - ✅ React Router 4
-  - ✅ React i18next for multi language support
-  - ✅ React Helmet
+  - ✔️ React Router 4
+  - ✔️ React Helmet
 
-## Installation
-
-By typing `npm install`.
+* Must be cool id has
+  - ⚪ React i18next for multi language support
+  - ⚪ Jest 22
+  - ⚪ Precommit hooks via lint-staged + Husky
+  - ⚪ Support for Storybook (>= 4.0.0)
 
 ## Usage
 
