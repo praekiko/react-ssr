@@ -1,16 +1,25 @@
 const path = require('path')
 const HtmlWebPackPlugin = require('html-webpack-plugin')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const WebpackMd5Hash = require('webpack-md5-hash')
+const CleanWebpackPlugin = require('clean-webpack-plugin')
+
+const devMode = process.env.NODE_ENV !== 'production'
 
 const htmlWebpackPlugin = new HtmlWebPackPlugin({
   template: './src/index.html',
   filename: './index.html',
 })
 
+const miniCssExtractPlugin = new MiniCssExtractPlugin({
+  filename: 'style.[contenthash].css',
+})
+
 module.exports = {
-  entry: './src/index.js',
+  entry: { main: './src/index.js' },
   output: {
-    path: path.resolve('dist'),
-    filename: 'bundled.js',
+    path: path.resolve(__dirname, 'dist'),
+    filename: devMode ? '[name].[hash].js' : '[name].[chunkhash].js',
   },
   module: {
     rules: [
@@ -22,24 +31,27 @@ module.exports = {
         },
       },
       {
-        test: /\.css$/,
+        test: /\.(sa|sc|c)ss$/,
         use: [
-          {
-            loader: 'style-loader',
-          },
+          devMode ? 'style-loader' : MiniCssExtractPlugin.loader,
           {
             loader: 'css-loader',
             options: {
-              modules: true,
-              importLoaders: 1,
-              localIdentName: '[name]_[local]_[hash:base64]',
               sourceMap: true,
-              minimize: true,
+              modules: true,
+              localIdentName: '[name]_[local]_[hash:base64]',
             },
           },
+          'postcss-loader',
+          'sass-loader',
         ],
       },
     ],
   },
-  plugins: [htmlWebpackPlugin],
+  plugins: [
+    new CleanWebpackPlugin('dist', {}),
+    miniCssExtractPlugin,
+    htmlWebpackPlugin,
+    new WebpackMd5Hash(),
+  ],
 }

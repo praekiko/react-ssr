@@ -8,6 +8,7 @@
   - 🎉 ESLint 4 (AirBnB with some personal rules added)
   - 🎉 Flow Type
   - 🎉 Prettier
+  - 💅 styled-components
   - ✅ Server side prerendering with Express
   - ✅ Hot Module Reloading (HMR)
   - ✅ Jest 22
