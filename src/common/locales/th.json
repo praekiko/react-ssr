@@ -1,6 +1,9 @@
 {
   "translation": {
     "th-button": "ไทย",
-    "en-button": "อังกฤษ"
+    "en-button": "อังกฤษ",
+    "home": "หน้าแรก",
+    "about": "เกี่ยวกับเรา",
+    "title": "React SSR - แพร"
   }
 }

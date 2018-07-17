@@ -1,6 +1,6 @@
 // @flow
-import React from 'react'
-import i18next from 'i18next'
+import React, { PureComponent, type Node } from 'react'
+import i18n from 'i18next'
 import { withRouter } from 'react-router-dom'
 import { I18nextProvider } from 'react-i18next'
 import { connect } from 'react-redux'
@@ -8,7 +8,7 @@ import { connect } from 'react-redux'
 import th from '../locales/th.json'
 import en from '../locales/en.json'
 
-i18next.init({
+i18n.init({
   fallbackLng: 'th',
   fallbackNS: ['translation'],
   resources: { th, en },
@@ -20,21 +20,32 @@ i18next.init({
   },
 })
 
-class I18n extends React.PureComponent {
+type ReduxProps = {
+  locale: string,
+}
+
+type Props = ReduxProps & {
+  children: Node,
+}
+
+class I18n extends PureComponent<Props> {
   componentDidMount() {
-    i18next.changeLanguage(this.props.locale)
+    const { locale } = this.props
+    i18n.changeLanguage(locale)
   }
 
   componentDidUpdate(prevProps) {
-    if (prevProps.locale !== this.props.locale) {
-      i18next.changeLanguage(this.props.locale)
+    const { locale } = this.props
+
+    if (prevProps.locale !== locale) {
+      i18n.changeLanguage(locale)
     }
   }
 
   render() {
-    return (
-      <I18nextProvider i18n={i18next}>{this.props.children}</I18nextProvider>
-    )
+    const { children } = this.props
+
+    return <I18nextProvider i18n={i18n}>{children}</I18nextProvider>
   }
 }
 

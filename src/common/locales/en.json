@@ -1,6 +1,9 @@
 {
   "translation": {
     "th-button": "Thai",
-    "en-button": "English"
+    "en-button": "English",
+    "home": "Home",
+    "about": "About",
+    "title": "React SSR - Prae"
   }
 }
