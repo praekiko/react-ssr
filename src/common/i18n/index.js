@@ -50,7 +50,7 @@ class I18n extends PureComponent<Props> {
 }
 
 const mapStateToProps = state => ({
-  locale: state.root.locale,
+  locale: state.locale,
 })
 
 export default withRouter(

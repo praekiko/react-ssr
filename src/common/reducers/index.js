@@ -1,9 +1,7 @@
-import { combineReducers } from 'redux'
+import Immutable from 'immutable'
 
-import root from '../../modules/root/reducer'
+import createSetValueReducer from './createSetValueReducer'
 
-const rootReducer = combineReducers({
-  root,
-})
-
-export default rootReducer
+export default {
+  locale: createSetValueReducer('LOCALE', 'th'),
+}

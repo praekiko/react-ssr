@@ -1,7 +1,7 @@
 import thunk from 'redux-thunk'
 import { createStore, applyMiddleware, compose } from 'redux'
 
-import rootReducer from '../reducers'
+import rootReducer from '../reducers/rootReducer'
 
 export const configureStore = ({ initialState, middleware = [] } = {}) => {
   const devtools =
@@ -19,8 +19,8 @@ export const configureStore = ({ initialState, middleware = [] } = {}) => {
 
   if (process.env.NODE_ENV !== 'production') {
     if (module.hot) {
-      module.hot.accept('../reducers', () =>
-        store.replaceReducer(require('../reducers').default)
+      module.hot.accept('../reducers/rootReducer', () =>
+        store.replaceReducer(require('../reducers/rootReducer').default)
       )
     }
   }

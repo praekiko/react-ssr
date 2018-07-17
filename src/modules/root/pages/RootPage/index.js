@@ -1,3 +1,5 @@
+// @flow
+
 import '../../../../common/styles/base.css'
 
 import React, { PureComponent } from 'react'
@@ -7,7 +9,7 @@ import { connect } from 'react-redux'
 import styled from 'styled-components'
 import { translate } from 'react-i18next'
 
-import RootActions from '../../actions'
+import CommonActions from '../../../../common/actions'
 
 import Home from '../../components/Home'
 import About from '../../components/About'
@@ -80,9 +82,19 @@ const PageContainer = styled.div`
   margin-bottom: 0.5em;
 `
 
-class RootPage extends PureComponent {
+type ReduxProps = {
+  setLocale: () => string,
+}
+
+type Props = ReduxProps & {
+  locale: string,
+  t: Function,
+}
+
+class RootPage extends PureComponent<Props> {
   setLanguage = ({ target: { value } }) => {
-    this.props.setLocale(value)
+    const { setLocale } = this.props
+    setLocale(value)
   }
 
   render() {
@@ -100,13 +112,14 @@ class RootPage extends PureComponent {
           <LinkContainer>
             <StyledLink to="/">{t('home')}</StyledLink>
             <StyledLink to="/about">{t('about')}</StyledLink>
+            <StyledLink to="/404">404</StyledLink>
           </LinkContainer>
 
           <PageContainer>
             <Switch>
               <Route exact path="/" component={Home} />
               <Route path="/about" component={About} />
-              <Route render={() => <h1>Nomatch</h1>} />
+              <Route render={() => <p>Nomatch</p>} />
             </Switch>
           </PageContainer>
 
@@ -131,11 +144,11 @@ class RootPage extends PureComponent {
 }
 
 const mapStateToProps = state => ({
-  locale: state.root.locale,
+  locale: state.locale,
 })
 
 const mapDispatchToProps = {
-  setLocale: RootActions.setLocale,
+  setLocale: CommonActions.setLocale,
 }
 
 export default withRouter(

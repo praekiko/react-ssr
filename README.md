@@ -13,6 +13,7 @@
   - ✔️ Hot Module Reloading (HMR)
   - ✔️ CSS Modules
   - ✔️ PostCSS
+  - ️️️️✔️ React i18next for multi language support
 
 * Libs and Dependencies
 
@@ -22,7 +23,6 @@
   - ✔️ React Helmet
 
 * Must be cool if has
-  - ⚪ React i18next for multi language support
   - ⚪ Code Spliting
   - ⚪ Jest 22
   - ⚪ Precommit hooks via lint-staged + Husky

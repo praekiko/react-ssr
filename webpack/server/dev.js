@@ -1,6 +1,7 @@
-const baseConfig = require('./base')
 const webpack = require('webpack')
 const WriteFileWebpackPlugin = require('write-file-webpack-plugin')
+
+const baseConfig = require('./base')
 
 const config = {
   ...baseConfig,
