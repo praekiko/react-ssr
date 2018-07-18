@@ -19,9 +19,14 @@
       ]
     },
     "production": {
+      "compact": true,
       "presets": [
-        "@babel/preset-env",
-        { "modules": false },
+        [
+          "@babel/preset-env",
+          {
+            "modules": false
+          }
+        ],
         "@babel/preset-react",
         "@babel/preset-flow"
       ],
@@ -32,7 +37,8 @@
         [
           "babel-plugin-styled-components",
           {
-            "ssr": true
+            "ssr": true,
+            "displayName": false
           }
         ]
       ]

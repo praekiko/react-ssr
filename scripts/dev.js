@@ -19,10 +19,10 @@ const WEBPACK_PORT =
   (!isNaN(Number(process.env.PORT)) ? Number(process.env.PORT) + 1 : 8081)
 
 const start = async () => {
-  rimraf.sync(paths.clientBuild) //rm -rf
+  rimraf.sync(paths.clientBuild)
   rimraf.sync(paths.serverBuild)
 
-  const [clientConfig, serverConfig] = webpackConfig //from webpack classify by env
+  const [clientConfig, serverConfig] = webpackConfig
 
   // HMR
   clientConfig.entry.bundle = [
@@ -34,7 +34,9 @@ const start = async () => {
   clientConfig.output.hotUpdateChunkFilename =
     'updates/[id].[hash].hot-update.js'
 
-  const publicPath = clientConfig.output.publicPath
+  const {
+    output: { publicPath },
+  } = clientConfig
 
   clientConfig.output.publicPath = [
     `http://localhost:${WEBPACK_PORT}`,
