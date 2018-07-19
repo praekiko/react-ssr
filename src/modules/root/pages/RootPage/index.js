@@ -83,7 +83,7 @@ const PageContainer = styled.div`
 `
 
 type ReduxProps = {
-  setLocale: () => string,
+  setLocale: Function,
 }
 
 type Props = ReduxProps & {

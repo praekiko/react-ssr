@@ -36,6 +36,6 @@ export default function renderHtml({
   </html>`
 }
 
-//<script type="text/javascript">window._store_=${serialize(store, {
+// <script type="text/javascript">window._store_=${serialize(store, {
 //       isJSON: true,
 //     })}</script>

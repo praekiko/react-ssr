@@ -10,6 +10,9 @@
   "rules": {
     "prettier/prettier": "error",
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
-    "arrow-body-style": ["error", "as-needed"]
+    "arrow-body-style": [0],
+    "no-undef": [0],
+    "no-underscore-dangle": [0],
+    "global-require": [0]
   }
 }

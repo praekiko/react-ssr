@@ -3,6 +3,7 @@ variables:
   TZ: Asia/Bangkok
 
 stages:
+- test
 - build
 - docker
 # - deploy
@@ -10,6 +11,19 @@ stages:
 .workflow-branches: &workflow_branches
 - master
 # - dev
+
+test:
+  stage: test
+  only: *workflow_branches
+  cache:
+    paths:
+      - node_modules
+  script:
+  - npm prune
+  - npm install
+  - npm run lint
+  - npm run flow
+  - NODE_ENV=test npm run test
 
 build:
   stage: build
@@ -40,6 +54,6 @@ docker:
   - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN registry.gitlab.com
   script:
     - docker pull $CONTAINER_IMAGE:latest || true
-    - docker build --cache-from $CONTAINER_IMAGE:latest --tag $CONTAINER_IMAGE:$CI_BUILD_REF --tag $CONTAINER_IMAGE:latest .
-    - docker push $CONTAINER_IMAGE:$CI_BUILD_REF
+    - docker build --cache-from $CONTAINER_IMAGE:latest --tag $CONTAINER_IMAGE:$CI_PIPELINE_ID --tag $CONTAINER_IMAGE:latest .
+    - docker push $CONTAINER_IMAGE:$CI_PIPELINE_ID
     - docker push $CONTAINER_IMAGE:latest
