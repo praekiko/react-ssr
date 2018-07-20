@@ -6,7 +6,7 @@ stages:
 - test
 - build
 - docker
-# - deploy
+- deploy
 
 .workflow-branches: &workflow_branches
 - master
