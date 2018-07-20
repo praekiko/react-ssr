@@ -54,6 +54,38 @@ docker:
   - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN registry.gitlab.com
   script:
     - docker pull $CONTAINER_IMAGE:latest || true
+    # - docker build --cache-from $CONTAINER_IMAGE:latest --tag $CONTAINER_IMAGE:$CI_COMMIT_REF_SLUG --tag $CONTAINER_IMAGE:latest .
     - docker build --cache-from $CONTAINER_IMAGE:latest --tag $CONTAINER_IMAGE:$CI_PIPELINE_ID --tag $CONTAINER_IMAGE:latest .
     - docker push $CONTAINER_IMAGE:$CI_PIPELINE_ID
     - docker push $CONTAINER_IMAGE:latest
+
+deploy_dev:
+  stage: deploy
+  script:
+    - echo "Deploy to dev app"
+  environment:
+    name: dev
+    url: https://dev.example.com
+  only:
+  - dev
+
+deploy_staging:
+  stage: deploy
+  script:
+    - echo "Deploy to staging app"
+  environment:
+    name: staging
+    url: https://staging.example.com
+  only:
+  - master
+
+deploy_prod:
+  stage: deploy
+  script:
+    - echo "Deploy to production app"
+  environment:
+    name: production
+    url: https://example.com
+  when: manual
+  only:
+  - master
