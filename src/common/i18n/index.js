@@ -6,15 +6,17 @@ import { withRouter } from 'react-router-dom'
 import { I18nextProvider } from 'react-i18next'
 import { connect } from 'react-redux'
 
-import th from 'common/locales/th.json'
-import en from 'common/locales/en.json'
+import th from 'common/locales/th'
+import en from 'common/locales/en'
+
+const devMode = process.env.NODE_ENV === 'development'
 
 i18n.init({
   fallbackLng: 'th',
   fallbackNS: ['translation'],
   resources: { th, en },
   parseMissingKeyHandler: missing => {
-    if (process.env.NODE_ENV === 'development') {
+    if (devMode) {
       console.warn('MISSING TRANSLATION:', missing)
     }
     return missing

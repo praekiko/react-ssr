@@ -5,10 +5,10 @@ import { composeWithDevTools } from 'redux-devtools-extension'
 
 import rootReducer from 'common/reducers/rootReducer'
 
-const isProduction = process.env.NODE_ENV === 'production'
+const devMode = process.env.NODE_ENV === 'development'
 const reduxImmutableStateInvariantMiddleware = reduxImmutableStateInvariant()
 
-const middleware = isProduction
+const middleware = !devMode
   ? [thunkMiddleware]
   : [thunkMiddleware, reduxImmutableStateInvariantMiddleware]
 
