@@ -1,6 +1,6 @@
 // @flow
 
-import '../../../../common/styles/base.css'
+import 'common/styles/base.css'
 
 import React, { PureComponent } from 'react'
 import { Link, withRouter } from 'react-router-dom'
@@ -9,8 +9,8 @@ import { connect } from 'react-redux'
 import styled from 'styled-components'
 import { translate } from 'react-i18next'
 
-import CommonActions from '../../../../common/actions'
-import CommonRoutes from '../../../../common/routes'
+import CommonActions from 'common/actions'
+import CommonRoutes from 'common/routes'
 
 const AppContainer = styled.div`
   display: flex;

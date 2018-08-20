@@ -1,6 +1,9 @@
 import { combineReducers } from 'redux'
 
-import commonReducers from './index'
-import post from '../../modules/post/reducers'
+import post from 'modules/post/reducers'
 
-export const rootReducer = combineReducers({ ...commonReducers, ...post })
+import commonReducers from './index'
+
+const rootReducer = combineReducers({ ...commonReducers, ...post })
+
+export default rootReducer

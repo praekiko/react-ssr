@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "target": "es6",
+    "jsx": "react",
+    "sourceMap": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "outDir": "dist",
+    "baseUrl": ".",
+    "paths": {
+      "modules/*": ["./src/modules/*", "./src/modules/*/index"],
+      "common/*": ["./src/common/*", "./src/common/*/index"]
+    }
+  },
+  "exclude": ["dist", "node_modules"]
+}

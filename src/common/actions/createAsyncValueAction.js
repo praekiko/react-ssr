@@ -1,7 +1,7 @@
 import { isEqual } from 'lodash'
 import { createAction } from 'redux-actions'
 
-import BaseApi from '../lib/BaseApi'
+import BaseApi from 'common/lib/BaseApi'
 
 function shouldFetch(prevKey, newKey) {
   return (!prevKey && !newKey) || !isEqual(prevKey, newKey)

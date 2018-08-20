@@ -1,7 +1,7 @@
 import React from 'react'
 import { Switch, Route } from 'react-router-dom'
 
-import postRoutes from '../../modules/post/routes'
+import postRoutes from 'modules/post/routes'
 
 import PrivateRoute from './PrivateRoute'
 

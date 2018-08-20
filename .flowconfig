@@ -1,0 +1,14 @@
+[ignore]
+.*/node_modules/.*/src.*
+
+[include]
+
+[libs]
+
+[lints]
+
+[options]
+module.name_mapper='^common' ->'<PROJECT_ROOT>/src/common'
+module.name_mapper='^modules' ->'<PROJECT_ROOT>/src/modules'
+
+[strict]

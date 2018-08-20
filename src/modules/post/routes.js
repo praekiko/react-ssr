@@ -1,5 +1,5 @@
-import PostsPage from './pages/PostsPage'
-import PostPage from './pages/PostPage'
+import PostsPage from 'modules/post/pages/PostsPage'
+import PostPage from 'modules/post/pages/PostPage'
 
 export default [
   {

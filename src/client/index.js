@@ -4,9 +4,9 @@ import { BrowserRouter as Router } from 'react-router-dom'
 
 import { Provider } from 'react-redux'
 
-import RootPage from '../modules/root/pages/RootPage'
-import I18nProvider from '../common/i18n'
-import configureStore from '../common/store/configureStore'
+import RootPage from 'modules/root/pages/RootPage'
+import I18nProvider from 'common/i18n'
+import configureStore from 'common/store/configureStore'
 
 const store =
   window.store ||

@@ -5,8 +5,8 @@ import { withRouter } from 'react-router-dom'
 import { I18nextProvider } from 'react-i18next'
 import { connect } from 'react-redux'
 
-import th from '../locales/th.json'
-import en from '../locales/en.json'
+import th from 'common/locales/th.json'
+import en from 'common/locales/en.json'
 
 i18n.init({
   fallbackLng: 'th',

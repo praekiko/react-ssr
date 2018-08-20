@@ -1,4 +1,4 @@
-import createAsyncValueReducer from '../../common/reducers/createAsyncValueReducer'
+import createAsyncValueReducer from 'common/reducers/createAsyncValueReducer'
 
 import constanst from './constants'
 

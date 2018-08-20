@@ -1,4 +1,4 @@
-import ApiManager from './ApiManager'
+import ApiManager from 'common/lib/ApiManager'
 
 const baseUrl = 'https://jsonplaceholder.typicode.com'
 

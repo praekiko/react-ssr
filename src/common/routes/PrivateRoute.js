@@ -1,7 +1,11 @@
-import React, { PureComponent } from 'react'
+// @flow
+
+import React, { PureComponent, type Node } from 'react'
 import { Route, Redirect } from 'react-router-dom'
 
-class PrivateRoute extends PureComponent {
+type Props = { component: Node }
+
+class PrivateRoute extends PureComponent<Props> {
   isUserLogin = () => {
     return true
   }
@@ -14,6 +18,7 @@ class PrivateRoute extends PureComponent {
         {...rest}
         render={props =>
           this.isUserLogin() ? (
+            // $FlowFixMe
             <Component {...props} />
           ) : (
             <Redirect

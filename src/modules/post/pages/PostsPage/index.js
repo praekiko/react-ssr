@@ -4,8 +4,8 @@ import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 
-import PostActions from '../../actions'
-import PostSelectors from '../../selectors'
+import PostActions from 'modules/post/actions'
+import PostSelectors from 'modules/post/selectors'
 
 type Post = {
   id: number,

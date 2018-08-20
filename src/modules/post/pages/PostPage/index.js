@@ -3,8 +3,8 @@
 import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
 
-import PostActions from '../../actions'
-import PostSelectors from '../../selectors'
+import PostActions from 'modules/post/actions'
+import PostSelectors from 'modules/post/selectors'
 
 type ReduxProps = {
   post: { id: number, title: string },
