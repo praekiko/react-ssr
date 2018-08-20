@@ -5,7 +5,7 @@ import chalk from 'chalk'
 import manifestHelpers from 'express-manifest-helpers'
 import bodyParser from 'body-parser'
 
-import { configureStore } from '../common/store'
+import configureStore from '../common/store/configureStore'
 import renderOnServer from './renderOnServer'
 import paths from '../../webpack/paths'
 

@@ -3,16 +3,14 @@
 import '../../../../common/styles/base.css'
 
 import React, { PureComponent } from 'react'
-import { Route, Link, Switch, withRouter } from 'react-router-dom'
+import { Link, withRouter } from 'react-router-dom'
 import Helmet from 'react-helmet'
 import { connect } from 'react-redux'
 import styled from 'styled-components'
 import { translate } from 'react-i18next'
 
 import CommonActions from '../../../../common/actions'
-
-import Home from '../../components/Home'
-import About from '../../components/About'
+import CommonRoutes from '../../../../common/routes'
 
 const AppContainer = styled.div`
   display: flex;
@@ -76,10 +74,11 @@ const PageContainer = styled.div`
   border-radius: 0.3em;
   padding: 1em;
   background-color: #f5f5f5;
-  color: white;
   font-size: 0.5em;
   height: 100px;
   margin-bottom: 0.5em;
+
+  overflow-y: auto;
 `
 
 type ReduxProps = {
@@ -111,16 +110,12 @@ class RootPage extends PureComponent<Props> {
 
           <LinkContainer>
             <StyledLink to="/">{t('home')}</StyledLink>
-            <StyledLink to="/about">{t('about')}</StyledLink>
+            <StyledLink to="/posts">{t('posts')}</StyledLink>
             <StyledLink to="/404">404</StyledLink>
           </LinkContainer>
 
           <PageContainer>
-            <Switch>
-              <Route exact path="/" component={Home} />
-              <Route path="/about" component={About} />
-              <Route render={() => <p>Nomatch</p>} />
-            </Switch>
+            <CommonRoutes />
           </PageContainer>
 
           <Button

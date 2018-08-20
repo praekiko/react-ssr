@@ -3,14 +3,14 @@ variables:
   TZ: Asia/Bangkok
 
 stages:
-- test
-- build
-- docker
-- deploy
+  - test
+  - build
+  - docker
+  - deploy
 
 .workflow-branches: &workflow_branches
-- master
-# - dev
+  - master
+  # - dev
 
 test:
   stage: test
@@ -19,11 +19,11 @@ test:
     paths:
       - node_modules
   script:
-  - npm prune
-  - npm install
-  - npm run lint
-  # - npm run flow
-  # - NODE_ENV=test npm run test
+    - npm prune
+    - npm install
+    - npm run lint
+    # - npm run flow
+    # - NODE_ENV=test npm run test
 
 build:
   stage: build
@@ -32,60 +32,57 @@ build:
     paths:
       - node_modules
   script:
-  - npm prune
-  - npm install
-  - npm run build
+    - npm prune
+    - npm install
+    - npm run build
   artifacts:
     expire_in: 30 min
     paths:
-    - dist
+      - dist
 
 docker:
   stage: docker
   only: *workflow_branches
   image: docker:stable
   services:
-  - docker:dind
+    - docker:dind
   variables:
     CONTAINER_IMAGE: registry.gitlab.com/$CI_PROJECT_PATH
     DOCKER_HOST: tcp://docker:2375
     DOCKER_DRIVER: overlay2
   before_script:
-  - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN registry.gitlab.com
+    - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN registry.gitlab.com
   script:
     - docker pull $CONTAINER_IMAGE:latest || true
-    # - docker build --cache-from $CONTAINER_IMAGE:latest --tag $CONTAINER_IMAGE:$CI_COMMIT_REF_SLUG --tag $CONTAINER_IMAGE:latest .
-    - docker build --cache-from $CONTAINER_IMAGE:latest --tag $CONTAINER_IMAGE:$CI_PIPELINE_ID --tag $CONTAINER_IMAGE:latest .
-    - docker push $CONTAINER_IMAGE:$CI_PIPELINE_ID
+    - docker build --cache-from $CONTAINER_IMAGE:latest --tag $CONTAINER_IMAGE:$CI_COMMIT_SHA --tag $CONTAINER_IMAGE:latest .
+    - docker push $CONTAINER_IMAGE:$CI_COMMIT_SHA
     - docker push $CONTAINER_IMAGE:latest
 
 deploy_dev:
   stage: deploy
-  script:
-    - echo "Deploy to dev app"
+  image: google/cloud-sdk
   environment:
-    name: dev
-    url: https://dev.example.com
-  only:
-  - dev
-
-deploy_staging:
-  stage: deploy
+    name: development
+    url: http://dev.praekiko.tk/
   script:
-    - echo "Deploy to staging app"
-  environment:
-    name: staging
-    url: https://staging.example.com
+    - echo "$GOOGLE_KEY" > key.json
+    - gcloud auth activate-service-account --key-file key.json
+    - gcloud container clusters get-credentials $KUBE_CLUSTER_NAME --zone $KUBE_CLUSTER_ZONE --project $KUBE_CLUSTER_PROJECT
+    - kubectl apply -f kubernetes/deployment.yaml
   only:
-  - master
+    - dev
 
 deploy_prod:
   stage: deploy
-  script:
-    - echo "Deploy to production app"
+  image: google/cloud-sdk
   environment:
-    name: production
-    url: https://example.com
+    name: development
+    url: http://www.praekiko.tk/
+  script:
+    - echo "$GOOGLE_KEY" > key.json
+    - gcloud auth activate-service-account --key-file key.json
+    - gcloud container clusters get-credentials $KUBE_CLUSTER_NAME --zone $KUBE_CLUSTER_ZONE --project $KUBE_CLUSTER_PROJECT
+    - kubectl apply -f kubernetes/deployment.yaml
   when: manual
   only:
-  - master
+    - master

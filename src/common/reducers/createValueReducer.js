@@ -1,6 +1,14 @@
 import { handleActions } from 'redux-actions'
 
-import setValueReducer from './setValueReducer'
+const setValueReducer = (state, action) => {
+  const { error, payload } = action
+
+  if (error) {
+    return state
+  }
+
+  return payload || null
+}
 
 export default (name, defaultState, extensions) => {
   const reducer = {
