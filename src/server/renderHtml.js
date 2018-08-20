@@ -1,5 +1,3 @@
-// import serialize from 'serialize-javascript'
-
 export default function renderHtml({
   body,
   css,
@@ -35,7 +33,3 @@ export default function renderHtml({
     </body>
   </html>`
 }
-
-// <script type="text/javascript">window._store_=${serialize(store, {
-//       isJSON: true,
-//     })}</script>

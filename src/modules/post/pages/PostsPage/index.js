@@ -3,6 +3,7 @@
 import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
+import { isEmpty } from 'lodash'
 
 import PostActions from 'modules/post/actions'
 import PostSelectors from 'modules/post/selectors'
@@ -21,9 +22,16 @@ type ReduxProps = {
 type Props = ReduxProps & {}
 
 class PostsPage extends PureComponent<Props> {
+  static fetchData = (store, props) => {
+    return Promise.all([store.dispatch(PostActions.fetchPosts())])
+  }
+
   componentDidMount() {
-    const { fetchPosts } = this.props
-    fetchPosts()
+    const { posts, fetchPosts } = this.props
+
+    if (isEmpty(posts)) {
+      fetchPosts()
+    }
   }
 
   render() {

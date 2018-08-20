@@ -5,9 +5,11 @@ export default [
   {
     path: '/posts/:id',
     component: PostPage,
+    exact: true,
   },
   {
     path: '/posts',
     component: PostsPage,
+    exact: true,
   },
 ]

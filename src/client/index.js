@@ -8,11 +8,7 @@ import RootPage from 'modules/root/pages/RootPage'
 import I18nProvider from 'common/i18n'
 import configureStore from 'common/store/configureStore'
 
-const store =
-  window.store ||
-  configureStore({
-    initialState: window._store_,
-  })
+const store = window.store || configureStore(window._store_)
 
 hydrate(
   <Provider store={store}>

@@ -12,9 +12,10 @@ const middleware = isProduction
   ? [thunkMiddleware]
   : [thunkMiddleware, reduxImmutableStateInvariantMiddleware]
 
-function configureStore() {
+function configureStore(initialState = {}) {
   return createStore(
     rootReducer,
+    initialState,
     composeWithDevTools(applyMiddleware(...middleware))
   )
 }

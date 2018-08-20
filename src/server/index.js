@@ -38,7 +38,7 @@ app.use(
   })
 )
 
-app.use(renderOnServer())
+app.use(renderOnServer)
 
 // eslint-disable-next-line no-unused-vars
 app.use((err, req, res, next) => {

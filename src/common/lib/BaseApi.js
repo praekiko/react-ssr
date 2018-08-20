@@ -2,7 +2,7 @@ import ApiManager from 'common/lib/ApiManager'
 
 const baseUrl = 'https://jsonplaceholder.typicode.com'
 
-class ChaofaApi {
+class BaseApi {
   constructor() {
     this.apiManager = new ApiManager(baseUrl)
   }
@@ -20,4 +20,4 @@ class ChaofaApi {
   }
 }
 
-export default new ChaofaApi()
+export default new BaseApi()

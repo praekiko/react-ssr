@@ -2,6 +2,7 @@
 
 import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
+import { isEmpty } from 'lodash'
 
 import PostActions from 'modules/post/actions'
 import PostSelectors from 'modules/post/selectors'
@@ -17,15 +18,28 @@ type Props = ReduxProps & {
 }
 
 class PostPage extends PureComponent<Props> {
+  static fetchData = (store, props) => {
+    const {
+      match: {
+        params: { id },
+      },
+    } = props
+
+    return Promise.all([store.dispatch(PostActions.fetchPost(id))])
+  }
+
   componentDidMount() {
     const {
       match: {
         params: { id },
       },
+      post,
       fetchPost,
     } = this.props
 
-    fetchPost(id)
+    if (isEmpty(post)) {
+      fetchPost(id)
+    }
   }
 
   render() {

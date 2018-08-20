@@ -1,4 +1,5 @@
 // @flow
+
 import React, { PureComponent, type Node } from 'react'
 import i18n from 'i18next'
 import { withRouter } from 'react-router-dom'

@@ -5,9 +5,9 @@ import postRoutes from 'modules/post/routes'
 
 import PrivateRoute from './PrivateRoute'
 
-const renderAppRoutes = () => {
-  const combinedRoutes = [...postRoutes]
+export const combinedRoutes = [...postRoutes]
 
+const renderAppRoutes = () => {
   return combinedRoutes.map(({ path, component }) => (
     <PrivateRoute key={path} path={path} component={component} />
   ))

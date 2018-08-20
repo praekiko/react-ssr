@@ -41,4 +41,4 @@ COPY dist ${APP_DIR}/dist
 
 EXPOSE 8080
 
-CMD ["node", "."]
+CMD ["npm", "run", "start"]

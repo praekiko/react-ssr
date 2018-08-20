@@ -67,6 +67,7 @@
     "history": "^4.7.2",
     "i18next": "^11.3.2",
     "immutable": "^3.8.2",
+    "isomorphic-fetch": "^2.2.1",
     "lodash": "^4.17.10",
     "mini-css-extract-plugin": "^0.4.0",
     "nodemon": "^1.17.5",

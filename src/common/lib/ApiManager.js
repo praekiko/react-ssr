@@ -1,4 +1,5 @@
 import qs from 'qs'
+import fetch from 'isomorphic-fetch'
 
 export default class ApiManager {
   constructor(baseUrl) {
