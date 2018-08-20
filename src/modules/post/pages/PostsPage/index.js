@@ -4,9 +4,12 @@ import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { isEmpty } from 'lodash'
+import { translate } from 'react-i18next'
 
 import PostActions from 'modules/post/actions'
 import PostSelectors from 'modules/post/selectors'
+
+import createMeta from './createMeta'
 
 type Post = {
   id: number,
@@ -19,7 +22,9 @@ type ReduxProps = {
   fetchPosts: () => Array<Post>,
 }
 
-type Props = ReduxProps & {}
+type Props = ReduxProps & {
+  t: Function,
+}
 
 class PostsPage extends PureComponent<Props> {
   static fetchData = (store, props) => {
@@ -35,10 +40,14 @@ class PostsPage extends PureComponent<Props> {
   }
 
   render() {
-    const { posts, isFetching } = this.props
+    const { posts, isFetching, t } = this.props
+
+    const meta = createMeta(t)
 
     return (
       <div>
+        {meta.toComponent()}
+
         {isFetching ? (
           <p>Loading...</p>
         ) : (
@@ -67,4 +76,4 @@ const mapDispatchToProps = {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(PostsPage)
+)(translate()(PostsPage))

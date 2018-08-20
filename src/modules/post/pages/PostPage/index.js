@@ -3,9 +3,12 @@
 import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
 import { isEmpty } from 'lodash'
+import { translate } from 'react-i18next'
 
 import PostActions from 'modules/post/actions'
 import PostSelectors from 'modules/post/selectors'
+
+import createMeta from './createMeta'
 
 type ReduxProps = {
   post: { id: number, title: string },
@@ -15,6 +18,7 @@ type ReduxProps = {
 
 type Props = ReduxProps & {
   match: { params: { id: number } },
+  t: Function,
 }
 
 class PostPage extends PureComponent<Props> {
@@ -43,10 +47,14 @@ class PostPage extends PureComponent<Props> {
   }
 
   render() {
-    const { post, isFetching } = this.props
+    const { post, isFetching, t } = this.props
+
+    const meta = createMeta(post.title, t)
 
     return (
       <div>
+        {meta.toComponent()}
+
         {isFetching ? <p>Loading...</p> : <h1 key={post.id}>{post.title}</h1>}
       </div>
     )
@@ -65,4 +73,4 @@ const mapDispatchToProps = {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(PostPage)
+)(translate()(PostPage))
